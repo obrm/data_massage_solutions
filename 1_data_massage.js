@@ -90,7 +90,7 @@ const data = [
   }
 ];
 
-// Question 1: Extract a list of all the people's names from the data.
+// Question 1: Extract to an array a list of all the people's names from the data.
 // Solution:
 
 // The map method is used to iterate through the data array and extract the value of the name property for each person object.
@@ -101,7 +101,7 @@ console.log(names);
 
 
 
-// Question 2: Get all the job positions for all the people.
+// Question 2: Extract to an array all the job positions for all the people.
 // Solution:
 // The map method is used to iterate through the data array and extract the jobs array for each person object.
 const jobPositions = data.map(person => person.jobs
@@ -120,7 +120,7 @@ const averageAge = data.reduce((acc, person) => acc + person.age, 0) / data.leng
 console.log(averageAge);
 
 
-// Question 4: Get all the unique cities where the people live.
+// Question 4: Return an array with the unique cities where the people live.
 // Solution:
 
 // The map method is used to iterate through the data array and extract the city property from the address object for each person object.
@@ -130,7 +130,7 @@ const uniqueCities = [...new Set(data.map(person => person.address.city))];
 console.log(uniqueCities);
 
 
-// Question 5: Extract a list of all the people's hobbies in alphabetical order.
+// Question 5: Extract to an array a list of all the people's hobbies in alphabetical order.
 // Solution:
 
 // The map method is used to iterate through the data array and extract the hobbies array for each person object.
@@ -162,7 +162,8 @@ const totalExperience = data.map(person => person.jobs
 console.log(totalExperience);
 
 
-// Question 7: Extract all the names of the people who live in California and have a job as a "Senior QA Engineer" and have "cooking" as a hobby, and sort them alphabetically:
+// Question 7: Extract to an array all the names of the people who live in California and have a job as a "Senior QA Engineer" and have "cooking" as a hobby, and sort them alphabetically.
+
 // The first filter method checks if the person's state is "CA" and if they have a job as a "Senior QA Engineer" and endDate is null and hobbies includes cooking
 const californiaSeniorQAEngineers = data.filter(person => person.address.state === "CA" &&
   person.jobs.find(job => job.position === "Senior QA Engineer" && job.endDate === null) &&
@@ -174,7 +175,7 @@ const californiaSeniorQAEngineers = data.filter(person => person.address.state =
 console.log(californiaSeniorQAEngineers);
 
 
-// Question 8: Extract all the responsibilities of the people who live in Chicago and are currently employed as "Senior Data Analysts":
+// Question 8: Extract to an array all the responsibilities of the people who live in Chicago and are currently employed as "Senior Data Analysts":
 
 // The first filter method checks if the person's city is "Chicago" and if they are currently employed as a "Senior Data Analyst"
 const nySeniorDataAnalystResponsibilities = data.filter(person => person.address.city === "Chicago" &&
@@ -183,14 +184,14 @@ const nySeniorDataAnalystResponsibilities = data.filter(person => person.address
   .map(person => person.jobs.filter(job => job.position === "Senior Data Analyst" && job.endDate === null)
   // The second map method extracts the responsibilities array from the job object
     .map(job => job.responsibilities))
-    // The flat method flattens the array of arrays into a single array of responsibilities
-  .flat();
+  // The flat method with '2' passed into it specifies how deep the nested array structure should be flattened. Se we flat the array of arrays into a single array of responsibilities.
+  .flat(2);
 
 console.log(nySeniorDataAnalystResponsibilities);
 
 
 
-// Question 9: Extract all the people who have "hiking" as a hobby and create a new field "job_experience" which is the sum of the number of months they have worked in each job:
+// Question 9: Extract to an array of objects with the names of all the people who have "hiking" as a hobby and a field "job_experience" which is the sum of the number of months they have worked in each job.
 
 // The filter method checks if the person has "hiking" as a hobby
 const hikingJobExperienceData = data.filter(person => person.hobbies.includes("hiking"))

@@ -243,7 +243,8 @@ const data = {
   ]
 };
 
-// Question 1: Extract the name of the planet with the smallest population that has a specific climate and terrain.
+// Question 1: Return an object of the planet with the smallest population that has a temperate climate and mountains terrain.
+
 // Solution:
 const specificClimateTerrainPlanet = data.results
 // The filter method is used to iterate through the data.results array and select the planets that have a specific climate and terrain.
@@ -256,7 +257,7 @@ const specificClimateTerrainPlanet = data.results
 console.log("specificClimateTerrainPlanet", specificClimateTerrainPlanet);
 
 
-// Question 2: Extract the names of all the planets that have a 'temperate' climate, and return the name of the planet, the climate and the number of films in which it was featured, also sort it by the number of films in descending order, using a for of loop and if else statement.
+// Question 2: Extract the names of all the planets that have a 'temperate' climate, and return an object with the name of the planet, the climate and the number of films in which it was featured, also sort it by the number of films in descending order.
 
 // Solution:
 specificClimatePlanet = [];
@@ -274,7 +275,7 @@ specificClimatePlanet = specificClimatePlanet.sort((a, b) => b.films - a.films);
 console.log("specificClimatePlanet", specificClimatePlanet);
 
 
-// Question 3: Count the number of planets which appeared in more than 3 films, and return an array of objects, each object has the name of the planet, the climate, the terrain and the number of films, using a for in loop, if else statement, and object.entries method.
+// Question 3: Return an array of objects of planets which appeared in more than 3 films. Each object should have the name of the planet, the climate, the terrain and the number of films.
 
 // Solution:
 const moreThanThree = [];
@@ -290,7 +291,7 @@ for (const [index, planet] of Object.entries(data.results)) {
 console.log("moreThanThree", moreThanThree);
 
 
-// Question 4: Extract the names of all the planets that have a specific climate and terrain, and return an array of objects, each object has the name of the planet, the climate, the terrain, the number of films and the number of residents, using filter, map and reduce method.
+// Question 4: Extract the names of all the planets that have a temperate climate and mountains terrain, and return an array of objects, each object has the name of the planet, the climate, the terrain, the number of films and the number of residents.
 
 // Solution:
 const specificClimateTerrainPlanets = data.results
@@ -310,7 +311,7 @@ const specificClimateTerrainPlanets = data.results
 console.log("specificClimateTerrainPlanets", specificClimateTerrainPlanets);
 
 
-// Question 5: Extract the name of the planet that has the most number of films featured in and the number of films, and the planet that has the least number of films featured in and the number of films, using find method and if else statement.
+// Question 5: Return an array with 2 objects. One object with the name of the planet that has the most number of films featured in and the number of films, and an object of the planet that has the least number of films featured in and the number of films.
 
 // Solution:
 planets = data.results;

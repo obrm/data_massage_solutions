@@ -973,7 +973,7 @@ const data = [
 ];
 
 
-// Question 1: Extract the names of all meteorites that have a mass greater than 10,000 kg and have fallen in the 21st century (2000-2099).
+// Question 1: Extract to an array the names of all meteorites that have a mass greater than 10,000 kg and have fallen in the 21st century (2000-2099).
 
 // First, we use the filter method to filter out meteorites that have a mass greater than 10,000 kg and have fallen in the 21st century (2000-2099)
 let filteredMeteorites = data.filter(meteorite => {
@@ -985,7 +985,7 @@ let filteredMeteorites = data.filter(meteorite => {
 console.log(filteredMeteorites);
 
 
-// Question 2: Extract the top 10 meteorites by mass that have fallen in the United States, sorted in descending order.
+// Question 2: Extract an array the top 10 meteorites by mass that have fallen in the United States, sorted in descending order.
 
 // First, we use filter method to filter out meteorites that have lat and long values
 filteredMeteorites = data.filter(meteorite => meteorite.reclat && meteorite.reclong)
@@ -1030,7 +1030,33 @@ for (let i = 0; i < data.length; i++) {
 console.log(meteoriteClasses);
 
 
-// Question 4: Extract the top 10 meteorites with the highest mass, grouped by their classification and sorted by mass within each classification.
+// Question 4: Create a new object that groups meteorites by their class, and within each class, groups them by their year found. The object should have the class as the key and the value should be another object with the year as the key and an array of meteorites as the value.
+
+// We use the reduce method to iterate through the data array
+const meteoritesByClassAndYear = data.reduce((acc, meteorite) => {
+  // We create a new object with the structure of { recclass: { year: [meteorite objects] } }. 
+  // It first checks if the current meteorite object has both a "recclass" and "year" property, which are used as the keys for the new object. 
+  if (meteorite.recclass && meteorite.year) {
+    // If the "recclass" key does not already exist in the accumulator object, it creates it as an empty object. 
+    if (!acc[meteorite.recclass]) {
+      acc[meteorite.recclass] = {};
+    }
+    // Similarly, if the year key does not exist within the "recclass" key, it creates it as an empty array. 
+    if (!acc[meteorite.recclass][meteorite.year.slice(0, 4)]) {
+      acc[meteorite.recclass][meteorite.year.slice(0, 4)] = [];
+    }
+    // Finally, it pushes the current meteorite object into the array found at the key of the current year within the key of the current recclass. 
+    acc[meteorite.recclass][meteorite.year.slice(0, 4)].push(meteorite);
+  }
+  return acc;
+}, {});
+
+console.log(meteoritesByClassAndYear);
+
+
+
+
+// Question: Create a new object and extract the top 10 meteorites with the highest mass, grouped by their classification and sorted by mass within each classification.
 // Solution:
 const topTenByClass = data
 // We filter out meteorites that do not have a mass value
@@ -1064,28 +1090,3 @@ Object.keys(topTenByClass)
 
 // The final output is an object where the keys are the classification and the values are the top 10 meteorites for that classification, sorted by mass.
 console.log(topTenByClass);
-
-
-
-// Question 5: Create a new object that groups meteorites by their class, and within each class, groups them by their year found. The object should have the class as the key and the value should be another object with the year as the key and an array of meteorites as the value.
-
-// We use the reduce method to iterate through the data array
-const meteoritesByClassAndYear = data.reduce((acc, meteorite) => {
-  // We create a new object with the structure of { recclass: { year: [meteorite objects] } }. 
-  // It first checks if the current meteorite object has both a "recclass" and "year" property, which are used as the keys for the new object. 
-  if (meteorite.recclass && meteorite.year) {
-    // If the "recclass" key does not already exist in the accumulator object, it creates it as an empty object. 
-    if (!acc[meteorite.recclass]) {
-      acc[meteorite.recclass] = {};
-    }
-    // Similarly, if the year key does not exist within the "recclass" key, it creates it as an empty array. 
-    if (!acc[meteorite.recclass][meteorite.year.slice(0, 4)]) {
-      acc[meteorite.recclass][meteorite.year.slice(0, 4)] = [];
-    }
-    // Finally, it pushes the current meteorite object into the array found at the key of the current year within the key of the current recclass. 
-    acc[meteorite.recclass][meteorite.year.slice(0, 4)].push(meteorite);
-  }
-  return acc;
-}, {});
-
-console.log(meteoritesByClassAndYear);
