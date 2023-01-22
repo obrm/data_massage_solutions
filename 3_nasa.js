@@ -974,6 +974,7 @@ const data = [
 
 
 // Question 1: Extract the names of all meteorites that have a mass greater than 10,000 kg and have fallen in the 21st century (2000-2099).
+
 // First, we use the filter method to filter out meteorites that have a mass greater than 10,000 kg and have fallen in the 21st century (2000-2099)
 let filteredMeteorites = data.filter(meteorite => {
   const mass = meteorite.mass;
@@ -1035,8 +1036,10 @@ const topTenByClass = data
 // We filter out meteorites that do not have a mass value
   .filter(meteorite => meteorite.mass)
   // The reduce method is then used to group the meteorites by their classification, creating an object where the keys are the classifications and the values are arrays of meteorites with that classification
+
   // See MDN docs example for this use of reduce:
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce#:~:text=Counting%20instances%20of%20values%20in%20an%20object
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce#:~:text=Grouping%20objects%20by%20a%20property
   .reduce((acc, meteorite) => {    
     if (!acc[meteorite.recclass]) {
       acc[meteorite.recclass] = [];
@@ -1050,7 +1053,7 @@ const topTenByClass = data
   
 // Next, we use Object.keys to get all the keys (classifications) 
 Object.keys(topTenByClass)
-// Then use forEach to go through each classification 
+// Then we use forEach to go through each classification 
 .forEach(classification => {
   topTenByClass[classification] = topTenByClass[classification]
   // Then we sort the meteorites within each classification by mass 
